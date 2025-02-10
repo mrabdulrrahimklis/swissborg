@@ -1,100 +1,73 @@
-# Welcome to React Router!
-
-A modern, production-ready template for building full-stack React applications using React Router.
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
-
-## Features
-
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
-
-## Getting Started
-
-### Installation
-
-Install the dependencies:
-
-```bash
-npm install
-```
-
-### Development
-
-Start the development server with HMR:
-
-```bash
-npm run dev
-```
-
-Your application will be available at `http://localhost:5173`.
-
-## Building for Production
-
-Create a production build:
-
-```bash
-npm run build
-```
-
-## Deployment
-
-### Docker Deployment
-
-This template includes three Dockerfiles optimized for different package managers:
-
-- `Dockerfile` - for npm
-- `Dockerfile.pnpm` - for pnpm
-- `Dockerfile.bun` - for bun
-
-To build and run using Docker:
-
-```bash
-# For npm
-docker build -t my-app .
-
-# For pnpm
-docker build -f Dockerfile.pnpm -t my-app .
-
-# For bun
-docker build -f Dockerfile.bun -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
-```
-
-The containerized application can be deployed to any platform that supports Docker, including:
-
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
+# Swissborg
 
 ```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
+│── /src
+│   ├── /components 
+│   ├── /routes
+│   │   ├── modules
+│   │   ├──── home
+│   │   ├──── summary
+│   ├── /utils
+│   ├── /services
+│   ├── root.tsx
+│   ├── routes.tsx
+│   ├── app.css
+│── /public
+│── /vite.config.ts
+│── /package.json
+│── /pnpm-lock.yaml
+│── /tsconfig.json
 ```
 
-## Styling
+React App setup with `pnpm 10.0.0` and version `node.js v22.13.1`
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+After cloning the repo, run `pnpm install` to install all dependencies.
+To run App run `pnpm run dev`.
 
----
+I used multiple popular libraries that have awesome community support for React:
 
-Built with ❤️ using React Router.
+- vite (to serve the app)
+- axios (as http client)
+- React Query (to manage data fetching)
+- tailwindcss (UI library)
+- headlessui (UI library)
+- react router dom v7 (navigation)
+- typescript
+
+App is done in way that we have a lot of components and modules that are reusable.
+
+Idea was to have some modules in routes that have in his folder components, hooks and types just for that components and to have one global folder for components that are used in multiple places.
+ 
+Also we have 
+
+## Project Architecture
+
+The project follows a modular architecture with clear separation of concerns:
+
+### Core Directories
+- `/components`: Reusable UI components used across multiple modules
+- `/routes`: Feature-based modules containing route-specific components, hooks, and types
+  - `/home`: Home page module
+  - `/summary`: Summary page module
+- `/utils`: Utility functions and helpers
+- `/services`: API services and data fetching logic
+
+### Key Features
+- **Modular Structure**: Each route has its own module with dedicated components, hooks, and types
+- **Global Components**: Shared components in the `/components` directory
+- **Type Safety**: Full TypeScript support throughout the application
+- **API Integration**: Axios with React Query for efficient data fetching and caching
+- **Modern UI**: TailwindCSS and HeadlessUI for responsive, accessible design
+
+## Available Scripts
+
+- `pnpm install` - Install project dependencies
+- `pnpm run dev` - Start development server
+- `pnpm run build` - Build production bundle
+
+### Environment Setup
+1. Clone the repository
+2. Install dependencies: `pnpm install`
+3. Create a `.env` file based on `.env.example` (if applicable)
+4. Start development server: `pnpm run dev`
+5. Usually I have .env in .gitignore but for this case that will not be needed.
