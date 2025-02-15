@@ -1,3 +1,4 @@
+import { useCurrencyValue } from "~/providers/eurEquivalentProvider";
 import { TableHead } from "~/routes/home/components/tableHead";
 import type { ITransaction } from "~/routes/home/types/transaction";
 import { calculateEqualToEur } from "~/utils/calculateEqualToEur";
@@ -36,6 +37,7 @@ export const SummaryTable = ({ transactions }: { transactions: ITransaction[] })
 
   const currencies = ['CHF', 'BTC', 'USD'];
   const summaryData = currencies.map(calculateSummary);
+  const { currencyValues } = useCurrencyValue()
 
   return (
     <div className="mt-8">
@@ -90,7 +92,11 @@ export const SummaryTable = ({ transactions }: { transactions: ITransaction[] })
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                   {(
-                    calculateEqualToEur(row.currency, row.totalBalance) ?? 0
+                    calculateEqualToEur(
+                      row.currency,
+                      row.totalBalance,
+                      currencyValues
+                    ) ?? 0
                   ).toLocaleString(undefined, {
                     minimumFractionDigits: row.currency === "BTC" ? 8 : 2,
                     maximumFractionDigits: row.currency === "BTC" ? 8 : 2,

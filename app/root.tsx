@@ -14,6 +14,7 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { CurrencyProvider } from "./providers/eurEquivalentProvider";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -25,7 +26,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <CurrencyProvider>{children}</CurrencyProvider>
         <ScrollRestoration />
         <Scripts />
       </body>

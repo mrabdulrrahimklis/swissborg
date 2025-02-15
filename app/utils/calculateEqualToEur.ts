@@ -1,13 +1,15 @@
-export const calculateEqualToEur = (currency: string, amount: number) => {
+import type { ICurrencyValues } from "~/types/ICurrencyValues";
+
+export const calculateEqualToEur = (currency: string, amount: number, currencyValueEur: ICurrencyValues) => {
   if (currency === "BTC") {
-    return amount * parseFloat(localStorage.getItem("BTC") || "0");
+    return currencyValueEur.BTC !== null &&  amount * currencyValueEur.BTC;
   }
 
   if (currency === "CHF") {
-    return amount * parseFloat(localStorage.getItem("CHF") || "0");
+    return currencyValueEur.CHF !== null && amount * currencyValueEur.CHF;
   }
 
   if (currency === "USD") {
-    return amount * parseFloat(localStorage.getItem("USD") || "0");
+    return currencyValueEur.USD !== null && amount * currencyValueEur.USD;
   }
 }

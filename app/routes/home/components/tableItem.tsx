@@ -1,8 +1,11 @@
+import { useCurrencyValue } from "~/providers/eurEquivalentProvider";
 import type { ITransaction } from "~/routes/home/types/transaction";
 import { calculateEqualToEur } from "~/utils/calculateEqualToEur";
 import { intlDateTimeFormat } from "~/utils/intlDateTimeFormat";
 
 export const TableItem = ({item}: {item: ITransaction}) => {
+    const { currencyValues } = useCurrencyValue();
+    
     return (
       <tr className="hover:bg-gray-50">
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -20,7 +23,8 @@ export const TableItem = ({item}: {item: ITransaction}) => {
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
           {calculateEqualToEur(
             item.currency,
-            item.amount
+            item.amount,
+            currencyValues
           )?.toLocaleString(undefined, {
             minimumFractionDigits: 2,
             maximumFractionDigits: 8,
@@ -34,8 +38,7 @@ export const TableItem = ({item}: {item: ITransaction}) => {
                 : "bg-red-100 text-red-800"
             }`}
           >
-            {item.type.charAt(0).toUpperCase() +
-              item.type.slice(1)}
+            {item.type.charAt(0).toUpperCase() + item.type.slice(1)}
           </span>
         </td>
         <td className="px-6 py-4 whitespace-nowrap">
@@ -46,8 +49,7 @@ export const TableItem = ({item}: {item: ITransaction}) => {
                 : "bg-yellow-100 text-yellow-800"
             }`}
           >
-            {item.status.charAt(0).toUpperCase() +
-              item.status.slice(1)}
+            {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
           </span>
         </td>
       </tr>
