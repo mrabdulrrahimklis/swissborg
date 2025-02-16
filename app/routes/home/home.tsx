@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { Loading } from "~/components/loading";
 import { useCurrencyValue } from "~/providers/eurEquivalentProvider";
 import { TableHead } from "~/routes/home/components/tableHead";
 import { TableItem } from "~/routes/home/components/tableItem";
@@ -39,11 +40,22 @@ export default function Home() {
   }, [eurEquivalentData, setCurrencyValues]);
 
   if (isLoading) {
-    return <div className="text-center">Loading...</div>;
+    return <div className="text-center">
+      <Loading />
+    </div>;
   }
 
   if (error) {
-    return <>Error</>;
+    return (
+      <>
+        <div className="mt-20">
+          <h2 className="text-2xl text-center">ERROR</h2>
+        </div>
+        <div className="text-lg text-center">
+          Page not found. Contact Swissborg support team!
+        </div>
+      </>
+    );
   }
 
   return (
