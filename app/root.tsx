@@ -2,7 +2,6 @@ import {
   QueryClient,
   QueryClientProvider
 } from "@tanstack/react-query";
-import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import {
   isRouteErrorResponse,
   Links,
@@ -26,9 +25,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-          {children}
-          <ScrollRestoration />
-          <Scripts />
+        <QueryClientProvider client={queryClient}>
+          <CurrencyProvider>{children}</CurrencyProvider>
+        </QueryClientProvider>
+        <ScrollRestoration />
+        <Scripts />
       </body>
     </html>
   );
@@ -38,12 +39,7 @@ const queryClient = new QueryClient();
 
 export default function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <CurrencyProvider>
-        <ReactQueryDevtools />
         <Outlet />
-      </CurrencyProvider>
-    </QueryClientProvider>
   );
 }
 
