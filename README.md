@@ -36,7 +36,7 @@ Clone the repository
 
 ```
 git clone git@github.com:mrabdulrrahimklis/swissborg.git
-cd swissborg-react
+cd swissborg
 ```
 
 ### Install dependencies
