@@ -26,9 +26,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <CurrencyProvider>{children}</CurrencyProvider>
-        <ScrollRestoration />
-        <Scripts />
+          {children}
+          <ScrollRestoration />
+          <Scripts />
       </body>
     </html>
   );
@@ -39,8 +39,10 @@ const queryClient = new QueryClient();
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <ReactQueryDevtools />
-      <Outlet />
+      <CurrencyProvider>
+        <ReactQueryDevtools />
+        <Outlet />
+      </CurrencyProvider>
     </QueryClientProvider>
   );
 }
