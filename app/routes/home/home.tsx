@@ -48,6 +48,11 @@ export default function Home() {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <div className="flex flex-col gap-2 mb-4 text-xl">
+        <div>1BTC = {currencyValues?.BTC} EUR</div>
+        <div>1CHF = {currencyValues?.CHF} EUR</div>
+        <div>1USD = {currencyValues?.USD} EUR</div>
+      </div>
       <div className="overflow-x-auto bg-white rounded-lg shadow">
         <table className="min-w-full divide-y divide-gray-200">
           <TableHead

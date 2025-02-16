@@ -15,20 +15,12 @@ export const TableItem = ({item}: {item: ITransaction}) => {
           {item.currency}
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-          {item.amount.toLocaleString(undefined, {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 8,
-          })}
+          {item.currency === "BTC"
+            ? item.amount.toFixed(8)
+            : item.amount.toFixed(2)}
         </td>
         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-          {calculateEqualToEur(
-            item.currency,
-            item.amount,
-            currencyValues
-          )?.toLocaleString(undefined, {
-            minimumFractionDigits: 2,
-            maximumFractionDigits: 8,
-          })}
+          {calculateEqualToEur(item.currency, item.amount, currencyValues)}
         </td>
         <td className="px-6 py-4 whitespace-nowrap">
           <span
